@@ -5,7 +5,7 @@
 **FunQG** is a novel graph coarsening framework specific to molecular data, utilizing **Fun**ctional groups based on a graph-theoretic concept called **Q**uotient **G**raph. FunQG can accurately complete various molecular property prediction tasks with a significant parameters reduction. By experiments, this method significantly outperforms previous baselines on various datasets, besides its low computational costs.
 
 <p align="center">
-   <img  src=https://github.com/zahta/funqg/blob/main/data/funqg.png?raw=true width="1000"/>  
+<a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/fbCWspHV/Screenshot-from-2022-11-13-14-49-26.png' border='0' alt='Screenshot-from-2022-11-13-14-49-26'/></a>
 </p>
 <b>The overview of FunQG framework.</b> The left figure (A) illustrates the application of the FunQG framework to a molecule to find its corresponding coarsened graph, named molecular quotient graph. The right figure (B) shows the application of a GNN architecture to the graph obtained from the FunQG to predict the property of the molecule. In the molecular graph, a specific color corresponds to each FG (its edges and nodes). Also, edges that have exactly one common node with an FG are drawn in red. The remained edges are drawn in black. 
 
@@ -26,7 +26,20 @@ git clone https://github.com/hhaji/funqg.git
 cd ./funqg
 ```
 
-### Training And/Or Evaluation Example
+### Generating FunQG Graphs Example
+```sh
+python graph_generator.py --gen_names_data <list_of_datasets> --splits '["scaffold"]'
+```
+```sh
+usage: graph_generator.py [-h]
+  --current_dir               Current directory containing codes and data folder
+  --gen_names_data            <Required> A string containing a list of data names to generate graph data, e.g. '["tox21", "bbbp"]'
+  --splits                    A string containing a list of split types to generate graph data, e.g. '["scaffold"]'
+  --generation_seeds          A string containing a list of random seeds to generate graph data, e.g. '[0, 1, 2]'
+  --HQ_first_aggregation_op   mean, sum
+```
+
+### Training and/or Evaluation Example
 ```sh
 python train_eval_run.py --name_data <dataset> --current_dir <path> --config <config>
 ```
@@ -46,7 +59,7 @@ usage: train_eval_run.py [-h]
   --device              cpu, cuda
   --patience            Number of patience of early stopping
   --config              A configuration of hyperparameters as an string, e.g.,
-                        "{"GNN_Layers": 5.0, "dropout": 0.15, "lr": 0.0005}"
+                        {"GNN_Layers": 5.0, "dropout": 0.15, "lr": 0.0005}'
 ```
 
 ### Hyperparameters Optimization Example
@@ -78,8 +91,8 @@ usage: hyper_tuning_run.py [-h]
 - **Hossein Hajiabolhassan** - [hhaji](https://github.com/hhaji)
 
 ## Co-Authors
-- **Ali Hojatnia** - [alihojatnia](https://github.com/alihojatnia)
 - **Yavar Taheri Yeganeh** - [YavarYeganeh](https://github.com/YavarYeganeh)
+- **Ali Hojatnia** - [alihojatnia](https://github.com/alihojatnia)
 
 ## Citation
 Hajiabolhassan, H., Taheri, Z., Hojatnia, A., & Yeganeh, Y. T. (2022). FunQG: Molecular Representation Learning Via Quotient Graphs. arXiv. https://doi.org/10.48550/arXiv.2207.08597
